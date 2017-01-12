@@ -24,27 +24,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller//@Service @Component
-@RequestMapping("/seckill") //url:/模块/资源/{id}/细分 /seckill/list
+@RequestMapping("/seckill") //url:/妯″潡/璧勬簮/{id}/缁嗗垎 /seckill/list
 public class SeckillController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private SeckillService seckillService;
 	/**
-	 * 列表页
+	 * 鍒楄〃椤�
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(Model model){
-		//获取列表页
+		//鑾峰彇鍒楄〃椤�
 		List<Seckill> list = seckillService.getSeckillList();
 		model.addAttribute("list", list);
-		//list.jsp + model(数据) = ModelAndView
+		//list.jsp + model(鏁版嵁) = ModelAndView
 		return "list";
 	}
 	
 	/**
-	 * 详情页
+	 * 璇︽儏椤�
 	 */
 	@RequestMapping(value = "/{seckillId}/detail", method=RequestMethod.GET)
 	public String detail(@PathVariable("seckillId") Long seckillId, Model model){
@@ -59,7 +59,7 @@ public class SeckillController {
 		return "detail";
 	}
 
-	//输出秒杀的信息
+	//杈撳嚭绉掓潃鐨勪俊鎭�
 	//ajax json
 	@RequestMapping(value = "/{seckillId}/exposer",
 			method = RequestMethod.POST,
@@ -83,11 +83,11 @@ public class SeckillController {
 	@ResponseBody
 	public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") Long seckillId,
 												   @PathVariable("md5") String md5,
-												   //手机号码保存在cookie里面，required(改参数是否为必须，这里设为false表示没有这个参数spring也不会报错)
+												   //鎵嬫満鍙风爜淇濆瓨鍦╟ookie閲岄潰锛宺equired(鏀瑰弬鏁版槸鍚︿负蹇呴』锛岃繖閲岃涓篺alse琛ㄧず娌℃湁杩欎釜鍙傛暟spring涔熶笉浼氭姤閿�)
 												   @CookieValue(value="killPhone",required=false) Long phone){
 		//springmvc valid
 		if(phone == null){
-			return new SeckillResult<SeckillExecution>(false, "未注册");
+			return new SeckillResult<SeckillExecution>(false, "鏈敞鍐�");
 		}
 		SeckillResult<SeckillExecution> result;
 		try {
@@ -95,18 +95,19 @@ public class SeckillController {
 			return new SeckillResult<SeckillExecution>(true, execution);
 		} catch(RepeatKillException e1){
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.REPEAT_KILL);
-			return new SeckillResult<SeckillExecution>(false, execution);
+			return new SeckillResult<SeckillExecution>(true, execution);
 		}catch(SeckillCloseException e2){
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.END);
-			return new SeckillResult<SeckillExecution>(false, execution);
+			return new SeckillResult<SeckillExecution>(true, execution);
 		}catch (SeckillException e) {
 			logger.error(e.getMessage(),e);
 			SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.INNER_ERROR);
-			return new SeckillResult<SeckillExecution>(false, execution);
+			return new SeckillResult<SeckillExecution>(true, execution);
 		}
 	}
 	
 	@RequestMapping(value = "/time/now" ,method = RequestMethod.GET)
+	@ResponseBody
 	public SeckillResult<Long> time(){
 		Date now = new Date();
 		return new SeckillResult(true, now.getTime());
