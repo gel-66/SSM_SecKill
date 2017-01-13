@@ -2,8 +2,8 @@ logback配置：http://logback.qos.ch/manual/configuration.html
 spring配置：http://docs.spring.io/spring/docs/
 mybatis配置：http://www.mybatis.org/mybatis-3/zh/index.html
 BootStrap前端框架：www.runoob.com/bootstrap/bootstrap-environment-setup.html
-CDN服务：www.bootcdn.cn
-
+CDN服务：www.bootcdn.cn 内容分发网络，加速用户获取数据的系统/部署在离用户最近的网络节点上/命中CDN不需访问后端服务器/互联网公司自己搭建或租用
+redis:服务器端缓存
 restful:
 GET /seckill/list ->秒杀列表
 GET /seckill/{id}/detail ->详情页
@@ -11,4 +11,4 @@ GET /seckill/time/now ->系统时间
 POST /seckill/{id}/exposer ->暴露秒杀
 POST /seckill/{id}/{md5}/execution ->执行秒杀 
 
-Handler -> 数据Model/页面View
+Handler -> 数据Model/页面View  

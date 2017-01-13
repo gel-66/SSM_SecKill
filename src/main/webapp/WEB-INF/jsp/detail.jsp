@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
    <head>
@@ -13,14 +17,14 @@
    				<div class="pannel-heading">
    					<h1>${seckill.name }</h1>
    				</div>
-   			</div>
-   			<div class="panel-body">
-   				<h2 class="panel-body">
-   					<!-- 显示time图标 -->
-   					<span class="glyphicon glyphicon-time"></span>
-   					<!-- 展示倒计时 -->
-   					<span class="glyphicon" id="seckill-box"></span>
-   				</h2>
+   				<div class="panel-body">
+	   				<h2 class="text-danger">
+	   					<!-- 显示time图标 -->
+	   					<span class="glyphicon glyphicon-time"></span>
+	   					<!-- 展示倒计时 -->
+	   					<span class="glyphicon" id="seckill-box"></span>
+	   				</h2>
+	   			</div>
    			</div>
    		</div>
    		<!-- 登录弹出层，输入电话 -->
@@ -29,13 +33,15 @@
    				<div class="modal-content">
    					<div class="modal-header">
    						<h3 class="modal-title text-center">
-   							<span class="glyphicon glyphicon-phone"></span>
+   							<span class="glyphicon glyphicon-phone">秒杀电话</span>
    						</h3>
    					</div>
    					<div class="modal-body">
-   						<div class="col-xs-8 col-xs-offset-2">
-   							<input type="text" name="killPhone" id="killPhoneKey"
-   									placeholder="填手机号^o^" class="form-control">
+   						<div class="row">
+	   						<div class="col-xs-8 col-xs-offset-2">
+	   							<input type="text" name="killPhone" id="killPhoneKey"
+	   									placeholder="填手机号^o^" class="form-control">
+	   						</div>
    						</div>
    					</div>
    					<div class="modal-footer">
@@ -63,7 +69,8 @@
 	<script src="http://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
 	
 	<!-- 开始编写交互逻辑 -->
-	<script type="text/javascript" src="/resource/script/seckill.js"></script>
+	
+	<script type="text/javascript" src="<%=request.getContextPath() %>/resource/script/seckill.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			seckill.detail.init({

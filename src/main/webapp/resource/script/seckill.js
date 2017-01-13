@@ -5,13 +5,13 @@ var seckill = {
 	//封装秒杀相关ajax的url
 	URL:{
 		now : function(){
-			return '/seckill/time/now';
+			return '/SSM_SecKill/seckill/time/now';
 		},
 		exposer:function(seckillId){
-			return '/seckill/'+seckillId+'/exposer';
+			return '/SSM_SecKill/seckill/'+seckillId+'/exposer';
 		},
 		execution : function(seckillId,md5){
-			return '/seckill/'+seckillId+'/'+md5+'/execution';
+			return '/SSM_SecKill/seckill/'+seckillId+'/'+md5+'/execution';
 		}
 	},
 	//获取秒杀地址，控制实现逻辑，执行秒杀
@@ -19,7 +19,7 @@ var seckill = {
 		node.hide().html('<button class="btn btn-primary btn-lg" id="killBtn">开始秒杀</button>');
 		$.post(seckill.URL.exposer(seckillId),{},function(result){
 			//在回调函数中执行交互流程
-			if(result&&result['success']){
+			if(result && result['success']){
 				var exposer = result['data'];
 				if(exposer['exposed']){
 					//开启秒杀
@@ -39,7 +39,7 @@ var seckill = {
 								var state = killResult['state'];
 								var stateInfo = killResult['stateInfo'];
 								//3.显示秒杀结果
-								node.htm('<span class="label label-success">'+stateInfo+'</span>');
+								node.html('<span class="label label-success">'+stateInfo+'</span>');
 							}
 						});
 					});
@@ -71,7 +71,7 @@ var seckill = {
 		if(nowTime > endTime){
 			//秒杀结束
 			seckillBox.html('秒杀结束！');
-		}else if(nowTime <startTime){
+		}else if(nowTime < startTime){
 			//秒杀未开始，计时时间绑定
 			var killTime = new Date(startTime+1000);
 			
@@ -82,11 +82,11 @@ var seckill = {
 				//时间完成后回调事件
 			}).on('finish.countdown',function(){
 				//获取秒杀地址，控制实现逻辑，执行秒杀
-				seckill.handleSeckill(seckillId,node);
+				seckill.handleSeckill(seckillId,seckillBox);
 			});
 		}else{
 			//秒杀开始
-			seckill.handleSecKill(seckillId,node);
+			seckill.handleSecKill(seckillId,seckillBox);
 		}
 	},
 	//详情页秒杀逻辑
@@ -101,7 +101,7 @@ var seckill = {
 			if(!seckill.validatePhone(killPhone)){
 				//绑定phone
 				//控制输出
-				var killPhoneModal = $('#skillPhoneModal');
+				var killPhoneModal = $('#killPhoneModal');
 				//显示弹出层
 				killPhoneModal.modal({
 					show:true,//显示弹出层
@@ -112,11 +112,11 @@ var seckill = {
 					var inputPhone = $('#killPhoneKey').val();
 					if(seckill.validatePhone(inputPhone)){
 						//电话写入cookie
-						$.cookie('killPhone',inputPhone,{expires:7,path:'/seckill'});
+						$.cookie('killPhone',inputPhone,{expires:7,path:'/SSM_SecKill'});
 						//刷新页面
 						window.location.reload();
 					}else{
-						$('#killPhoneMessage').hide().html('<label calss="label label-danger">手机号错误！</label>').show(300);
+						$('#killPhoneMessage').hide().html('<label class="label label-danger">手机号错误！</label>').show(300);
 					}
 				});
 			}
@@ -124,7 +124,7 @@ var seckill = {
 			//计时交互
 			var startTime = params['startTime'];
 			var endTime = params['endTime'];
-			var seckillId = params['startTime'];
+			var seckillId = params['seckillId'];
 			$.get(seckill.URL.now(), {}, function(result){
 				if(result && result['success']){
 					var nowTime = result['data'];

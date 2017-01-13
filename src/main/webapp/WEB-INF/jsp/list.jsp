@@ -13,7 +13,7 @@
    	<!-- 页面显示部分 -->
    	<div class="container">
 		<div class="panel panel-default">
-			<div class="panel-heading text-conter">
+			<div class="panel-heading text-center">
 				<h2>秒杀列表</h2>
 			</div>
 			<div class="panel-body">
@@ -43,7 +43,7 @@
 									<fmt:formatDate value="${sk.createTime }" pattern="yyyy-MM-dd HH:mm:ss"/>
 								</td>
 								<td>
-									<a class="btn btn-info" href="<%=basePath %>/seckill/${sk.seckillId }/detail" target="_blank"></a>
+									<a class="btn btn-info" href="<%=basePath %>seckill/${sk.seckillId }/detail" target="_blank">link</a>
 								</td>
 							</tr>
 						</c:forEach>
