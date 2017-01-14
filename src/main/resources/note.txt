@@ -1,14 +1,16 @@
-logbacké…ç½®ï¼šhttp://logback.qos.ch/manual/configuration.html
-springé…ç½®ï¼šhttp://docs.spring.io/spring/docs/
-mybatisé…ç½®ï¼šhttp://www.mybatis.org/mybatis-3/zh/index.html
-BootStrapå‰ç«¯æ¡†æ¶ï¼šwww.runoob.com/bootstrap/bootstrap-environment-setup.html
-CDNæœåŠ¡ï¼šwww.bootcdn.cn å†…å®¹åˆ†å‘ç½‘ç»œï¼ŒåŠ é€Ÿç”¨æˆ·è·å–æ•°æ®çš„ç³»ç»Ÿ/éƒ¨ç½²åœ¨ç¦»ç”¨æˆ·æœ€è¿‘çš„ç½‘ç»œèŠ‚ç‚¹ä¸Š/å‘½ä¸­CDNä¸éœ€è®¿é—®åç«¯æœåŠ¡å™¨/äº’è”ç½‘å…¬å¸è‡ªå·±æ­å»ºæˆ–ç§Ÿç”¨
-redis:æœåŠ¡å™¨ç«¯ç¼“å­˜
-restful:
-GET /seckill/list ->ç§’æ€åˆ—è¡¨
-GET /seckill/{id}/detail ->è¯¦æƒ…é¡µ
-GET /seckill/time/now ->ç³»ç»Ÿæ—¶é—´
-POST /seckill/{id}/exposer ->æš´éœ²ç§’æ€
-POST /seckill/{id}/{md5}/execution ->æ‰§è¡Œç§’æ€ 
+logbackÅäÖÃ£ºhttp://logback.qos.ch/manual/configuration.html
+springÅäÖÃ£ºhttp://docs.spring.io/spring/docs/
+mybatisÅäÖÃ£ºhttp://www.mybatis.org/mybatis-3/zh/index.html
+BootStrapÇ°¶Ë¿ò¼Ü£ºwww.runoob.com/bootstrap/bootstrap-environment-setup.html
+CDN·şÎñ£ºwww.bootcdn.cn ÄÚÈİ·Ö·¢ÍøÂç£¬¼ÓËÙÓÃ»§»ñÈ¡Êı¾İµÄÏµÍ³/²¿ÊğÔÚÀëÓÃ»§×î½üµÄÍøÂç½ÚµãÉÏ/ÃüÖĞCDN²»Ğè·ÃÎÊºó¶Ë·şÎñÆ÷/»¥ÁªÍø¹«Ë¾×Ô¼º´î½¨»ò×âÓÃ
+redis:·şÎñÆ÷¶Ë»º´æ www.redis.io/download windows°æ±¾£ºhttps://github.com/MSOpenTech/redis/releases
 
-Handler -> æ•°æ®Model/é¡µé¢View  
+ĞòÁĞ»¯¹¤¾ß±È¶Ô£ºhttps://github.com/eishay/jvm-serializers/wiki
+restful:
+GET /seckill/list ->ÃëÉ±ÁĞ±í
+GET /seckill/{id}/detail ->ÏêÇéÒ³
+GET /seckill/time/now ->ÏµÍ³Ê±¼ä
+POST /seckill/{id}/exposer ->±©Â¶ÃëÉ±
+POST /seckill/{id}/{md5}/execution ->Ö´ĞĞÃëÉ± 
+
+Handler -> Êı¾İModel/Ò³ÃæView  
